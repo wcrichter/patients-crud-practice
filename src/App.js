@@ -1,28 +1,44 @@
 import React, { Component } from 'react';
+import {
+  BrowserRouter,
+  Route,
+  Switch
+} from 'react-router-dom'
+
+import List from './pages/list'
+import Form from './pages/form'
+import Profile from './pages/profile'
+
+
+// List Patients
+// Add Patient
+// Show Patient
+// Edit Patient
+// Remove Patient
+
+// display the patients
+// create a patient form to add new patients
+// create a patient page to view patient information when selected from the patient list
+// edit the patient when clicking the edit button from the patient show screen
+// prompting and removing the patient when clicking the remove button from the view patient screen
 
 class App extends Component {
   render() {
     return (
-      <div>
-        <header className="pa4 bg-yellow white-70">
-          <h1>Patients CRUD</h1>
-        </header>
-        <main className="pa4 black-80">
-          <h2>Description</h2>
-          <p>Practice Create, Read, Update, Delete</p>
-          <p>In this exercise, you will build a patient list, the ability to add a patient, the ability to view a patient,
-            the ability to view the patient and the ability to remove the patient</p>
-          <h3>CheckList</h3>
-          <ul>
-            <li>[ ] - List Patients</li>
-            <li>[ ] - Add New Patient</li>
-            <li>[ ] - View Patient</li>
-            <li>[ ] - Update Patient</li>
-            <li>[ ] - Remove Patient</li>
-          </ul>
-          <p>More Info (see Readme)</p>
-        </main>
-      </div>
+      <BrowserRouter>
+        <div>
+          <header className="pa4 bg-yellow white-70">
+            <h1>Patients CRUD</h1>
+          </header>
+          <main className="pa4 black-80">
+          <Route exact path="/" component={List} />
+          <Switch>
+            <Route path="/patients/new" component={Form} />
+            <Route path="/patients/:id" component={Profile} />
+          </Switch>
+          </main>
+        </div>
+      </BrowserRouter>
     );
   }
 }

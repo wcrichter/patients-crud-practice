@@ -13,14 +13,24 @@ const patients = function (patients=[], action) {
   }
 }
 
+const patient = function (patient={}, action) {
+  switch (action.type) {
+    case 'SET_PATIENT':
+      return action.payload
+    default:
+      return patient
+  }
+}
+
 // create store
 const store = createStore(
   combineReducers({
-    patients
+    patients,
+    patient
   })
 )
 
-store.dispatch({type: INIT, payload: createPatients(100) })
+store.dispatch({type: INIT, payload: createPatients(10) })
 
 // export store
 export default store
